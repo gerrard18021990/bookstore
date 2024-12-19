@@ -15,6 +15,7 @@ $this->title = $book->isNewRecord ? 'Создать книгу' : 'Измени�
         <?= $form->field($book, 'isbn') ?>
         <?= $form->field($book, 'description')->textarea() ?>
         <?= $form->field($book, 'issue_year') ?>
+        <?= $form->field($book, 'authorIds')->checkboxList(\yii\helpers\ArrayHelper::map($authors, 'id', 'fullName')); ?>
 
         <div class="form-group">
             <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>

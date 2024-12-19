@@ -13,6 +13,11 @@ $this->title = 'Список книг';
             <td><?= $book->issue_year; ?></td>
             <td><?= $book->isbn; ?></td>
             <td>
+                <?php foreach ($book->authors as $author) { ?>
+                    <div><?= $author->fullName; ?></div>
+                <?php } ?>
+            </td>
+            <td>
                 <a class="link" href="<?= Url::toRoute(['/book/update', 'id' => $book->id]); ?>">Изменить</a>
             </td>
         </tr>

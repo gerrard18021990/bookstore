@@ -2,8 +2,11 @@
 
 namespace backend\controllers;
 
+use common\models\Author;
 use common\models\Book;
+use common\service\BookService;
 use Yii;
+use yii\db\Exception;
 use yii\helpers\Url;
 use yii\web\Controller;
 
@@ -18,29 +21,38 @@ class BookController extends Controller
 
     public function actionCreate()
     {
+        $bookService = new BookService();
         $book = new Book();
 
-        if ($book->load(Yii::$app->request->post()) && $book->save()) {
+        if ($book->load(Yii::$app->request->post()) && $bookService->save($book)) {
             return $this->redirect(Url::toRoute('/book/index'));
         }
 
         return $this->render('form', [
             'book' => $book,
+            'authors' => Author::find()->all(),
         ]);
     }
 
+    /**
+     * @throws Exception
+     */
     public function actionUpdate($id)
     {
         if (!$book = Book::findOne($id)) {
             return $this->render('/error/404');
         }
 
-        if ($book->load(Yii::$app->request->post()) && $book->save()) {
+        $book->authorIds = $book->authors;
+        $bookService = new BookService();
+
+        if ($book->load(Yii::$app->request->post()) && $bookService->save($book)) {
             return $this->redirect(Url::toRoute('/book/index'));
         }
 
         return $this->render('form', [
             'book' => $book,
+            'authors' => Author::find()->all(),
         ]);
     }
 }
