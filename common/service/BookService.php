@@ -25,6 +25,8 @@ class BookService
             return false;
         }
 
+        $book->authorIds = is_array($book->authorIds) ? $book->authorIds : [];
+
         foreach ($book->authorIds as $authorId) {
             if ($author = Author::findOne($authorId)) {
                 $book->link('authors', $author);

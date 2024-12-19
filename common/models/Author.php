@@ -6,7 +6,7 @@ use yii\db\ActiveRecord;
 
 class Author extends ActiveRecord
 {
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%author}}';
     }

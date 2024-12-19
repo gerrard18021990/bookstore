@@ -8,7 +8,7 @@ use yii\db\ActiveRecord;
 class Book extends ActiveRecord
 {
     public $pictureUpload = null;
-    public array $authorIds = [];
+    public $authorIds = [];
 
     public static function tableName()
     {
