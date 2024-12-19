@@ -96,6 +96,12 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
+    public function getAuthors(): \yii\db\ActiveQuery
+    {
+        return $this->hasMany(Author::class, ['id' => 'author_id'])
+            ->viaTable('user_author_subscription', ['user_id' => 'id']);
+    }
+
     /**
      * Finds user by password reset token
      *

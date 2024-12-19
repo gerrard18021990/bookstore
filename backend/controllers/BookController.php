@@ -21,10 +21,9 @@ class BookController extends Controller
 
     public function actionCreate()
     {
-        $bookService = new BookService();
         $book = new Book();
 
-        if ($book->load(Yii::$app->request->post()) && $bookService->save($book)) {
+        if ($book->load(Yii::$app->request->post()) && (new BookService())->save($book)) {
             return $this->redirect(Url::toRoute('/book/index'));
         }
 
@@ -44,9 +43,8 @@ class BookController extends Controller
         }
 
         $book->authorIds = $book->authors;
-        $bookService = new BookService();
 
-        if ($book->load(Yii::$app->request->post()) && $bookService->save($book)) {
+        if ($book->load(Yii::$app->request->post()) && (new BookService())->save($book)) {
             return $this->redirect(Url::toRoute('/book/index'));
         }
 
