@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\enum\UserRole;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -100,6 +101,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Author::class, ['id' => 'author_id'])
             ->viaTable('user_author_subscription', ['user_id' => 'id']);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role == UserRole::ROLE_ADMIN->value;
     }
 
     /**

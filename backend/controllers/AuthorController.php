@@ -5,9 +5,8 @@ namespace backend\controllers;
 use common\models\Author;
 use Yii;
 use yii\helpers\Url;
-use yii\web\Controller;
 
-class AuthorController extends Controller
+class AuthorController extends BackendController
 {
     public function actionIndex()
     {

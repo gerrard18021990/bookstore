@@ -8,9 +8,8 @@ use common\service\BookService;
 use Yii;
 use yii\db\Exception;
 use yii\helpers\Url;
-use yii\web\Controller;
 
-class BookController extends Controller
+class BookController extends BackendController
 {
     public function actionIndex()
     {
