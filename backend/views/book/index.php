@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->title = 'Список книг';
@@ -9,6 +10,11 @@ $this->title = 'Список книг';
 <table class="table">
     <?php foreach ($books as $book) { ?>
         <tr>
+            <td width="10%">
+                <?php if($book->picture) {
+                    echo Html::img($book->getPictureUrl(), ['class' => 'img-fluid img-thumbnail']);
+                } ?>
+            </td>
             <td><?= $book->title; ?></td>
             <td><?= $book->issue_year; ?></td>
             <td><?= $book->isbn; ?></td>
