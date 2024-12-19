@@ -1,3 +1,21 @@
-<?php foreach ($books as $book) { ?>
+<?php
 
-<?php }
+use yii\helpers\Url;
+
+$this->title = 'Список книг';
+?>
+
+<h2><?= $this->title; ?></h2>
+<table class="table">
+    <?php foreach ($books as $book) { ?>
+        <tr>
+            <td><?= $book->title; ?></td>
+            <td><?= $book->issue_year; ?></td>
+            <td><?= $book->isbn; ?></td>
+            <td>
+                <a class="link" href="<?= Url::toRoute(['/book/update', 'id' => $book->id]); ?>">Изменить</a>
+            </td>
+        </tr>
+    <?php } ?>
+</table>
+<a class="btn btn-primary" href="<?= Yii::$app->urlManager->createUrl('/book/create'); ?>">Создать</a>
